@@ -4,7 +4,7 @@ A simple implementation of double deep Q-network based on [Keras](https://keras.
 
 In brief, deep Q-learning \[1\] parametrizes action-value functions in [Q-learning](https://en.wikipedia.org/wiki/Q-learning) with deep neural networks to circumvent problems caused by large state-space. The implemented method, double Q-learning \[2\], uses the current action instead of the maximum Q score to estimate the future reward.
 
-![Breakout](https://cloud.githubusercontent.com/assets/6327275/18435533/debc1d52-78c1-11e6-81b7-7125dcf52c92.gif)
+![Breakout](https://cloud.githubusercontent.com/assets/6327275/18494918/6fe2843a-79e7-11e6-9c70-3ecdf5af4c54.gif)
 
 [Feature transformation in action (Youtube)](https://youtu.be/Ef28c2bGXW0)
 
