@@ -5,7 +5,7 @@ Implemented in Python 3.5.2
 Author: Yun-Jhong Wu
 """
 import matplotlib
-matplotlib.use("Qt4Agg")
+#matplotlib.use("Qt4Agg")
 
 import keras.backend as K
 import matplotlib.colors as col

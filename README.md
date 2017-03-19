@@ -53,11 +53,11 @@ The pretrained model was trained with 1,000,000 iterations of RMSProp (*learning
 ## Test environment 
 
  * Python 3.5.2
- * Keras 1.0.8
- * Matplotlib 1.5.2
- * Numpy 1.11.1
- * Pygame 1.9.2
- * Theano 0.8.2
+ * Keras 2.0.1
+ * Matplotlib 2.0.0
+ * Numpy 1.12.0
+ * Pygame 1.9.3
+ * Theano 0.9.0
 
 
 ## References

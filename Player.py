@@ -8,7 +8,7 @@ Author: Yun-Jhong Wu
 import numpy as np
 import os
 
-from keras.layers import Dense, Convolution2D, Flatten, Input, MaxPooling2D, merge
+from keras.layers import Dense, Conv2D, Flatten, Input, MaxPooling2D, dot
 from keras.models import Sequential, Model, model_from_json
 from keras.optimizers import RMSprop
 from typing import Tuple
@@ -18,13 +18,15 @@ def getModel(input_shape):
     Qfunc = Sequential()
     action = Input(shape=(Player.NUM_ACTIONS,))
     screen = Input(shape=input_shape)
-    Qfunc.add(Convolution2D(32, 8, 8, subsample=(4, 4), 
-                            activation='relu', border_mode="same", 
-                            input_shape=input_shape))
-    Qfunc.add(Convolution2D(64, 4, 4, subsample=(2, 2), 
-                            activation='relu', border_mode="same"))
-    Qfunc.add(Convolution2D(64, 4, 4, activation='relu', 
-                            border_mode="same"))
+    Qfunc.add(Conv2D(32, (8, 8), strides=(4, 4), 
+                     activation='relu', padding="same", 
+                     input_shape=input_shape,
+                     data_format="channels_first"))
+    Qfunc.add(Conv2D(64, (4, 4), strides=(2, 2), 
+                     activation='relu', padding="same", 
+                     data_format="channels_first"))
+    Qfunc.add(Conv2D(64, (4, 4), activation='relu', padding="same",
+                     data_format="channels_first"))
     Qfunc.add(MaxPooling2D(pool_size=(2, 2)))
     Qfunc.add(Flatten())
     Qfunc.add(Dense(128, activation='relu'))
@@ -33,9 +35,8 @@ def getModel(input_shape):
     
     reward = Qfunc(screen)
     
-    model = Model(input=[screen, action], 
-                  output=merge([reward, action], mode='dot', 
-                               dot_axes=[1, 1]))
+    model = Model(inputs=[screen, action], 
+                  outputs=dot([reward, action], axes=[1, 1]))
     return Qfunc, model
 
 
